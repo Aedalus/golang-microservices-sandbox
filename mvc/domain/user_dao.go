@@ -15,7 +15,13 @@ var users = map[int64]*User{
 	},
 }
 
-func GetUser(id int64) (*User, *utils.ApplicationError) {
+type userDao struct{}
+
+var (
+	UserDao userDao
+)
+
+func (u userDao) GetUser(id int64) (*User, *utils.ApplicationError) {
 	if user := users[id]; user != nil {
 		return user, nil
 	}
