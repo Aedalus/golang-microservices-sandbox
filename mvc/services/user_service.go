@@ -5,12 +5,14 @@ import (
 	"mvc/utils"
 )
 
-type userService struct {}
+type userService struct {
+	userDao domain.UserDaoInterface
+}
 
 var (
-	UserService userService
+	UsersService userService
 )
 
 func (u *userService) GetUser(id int64) (*domain.User, *utils.ApplicationError){
-	return domain.UserDao.GetUser(id)
+	return u.userDao.GetUser(id)
 }
